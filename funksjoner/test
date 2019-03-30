@@ -1,0 +1,36 @@
+ $room2_sql = "SELECT * FROM rom WHERE rom_type_id =2 ";
+                    $room2_results = mysqli_query($db_con, $room2_sql); 
+                    
+                    $room3_sql = "SELECT * FROM rom WHERE rom_type_id =3 "; 
+                    $room3_results = mysqli_query($db_con, $room3_sql);
+                    
+                    $room4_sql = "SELECT * FROM rom WHERE rom_type_id =4 "; 
+                    $room4_results = mysqli_query($db_con, $room4_sql);
+$room2 = mysqli_fech_array($room2_results);
+
+        foreach($room2 as $room){
+            if($room['id']==$_SESSION['room']){
+            echo " <option value='". $room['id'] ."' selected='selected'>" .$room['rom_nummer']. "</option>";
+            }
+            else{
+            echo " <option value='". $room['id'] ."'>" .$room['rom_nummer']. "</option>";
+            }
+        }
+        $room3 = mysqli_fech_array($room3_results);
+            foreach($room3 as $room){
+            if($room['id']==$_SESSION['room']){
+                echo " <option value='". $room['id'] ."' selected='selected'>" .$room['rom_nummer']. "</option>";
+            }
+            else{
+                echo " <option value='". $room['id'] ."'>" .$room['rom_nummer']. "</option>";
+            }
+        }
+        $room4 = mysqli_fech_array($room4_results);
+            foreach($room4 as $room){
+            if($room['id']==$_SESSION['room']){
+                echo " <option value='". $room['id'] ."' selected='selected'>" .$room['rom_nummer']. "</option>";
+            }
+            else{
+                echo " <option value='". $room['id'] ."'>" .$room['rom_nummer']. "</option>";
+            }
+        }                   
