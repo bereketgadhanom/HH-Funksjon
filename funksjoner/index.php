@@ -26,6 +26,19 @@
                 </div>
             </fieldset>
 
+             <!-- Varighetsfelter -->
+             <fieldset id="duration">
+                <legend> Checking / Sjekking </legend>
+                <div>
+                    <label for="check-in">Check-in date / Innsjekksdato </label>
+                    <input type="date" id="check-in" name="check-in" value="<?php echo $_SESSION['check-in'] ;?>" required />
+                </div>
+                <div>
+                    <label for="check-out">Check-out date / Utsjekksdato </label>
+                    <input type="date" id="check-out" name="check-out" value="<?php echo $_SESSION['check-out'] ;?>" required />
+                </div>
+            </fieldset>
+
               <!-- Romtypefelter -->
             <fieldset id="roomtype-select">
                 <legend> Room type / Romtype </legend>
@@ -123,19 +136,6 @@
                 </div>
             </fieldset>
 
-            <!-- Varighetsfelter -->
-            <fieldset id="duration">
-                <legend> Checking / Sjekking </legend>
-                <div>
-                    <label for="check-in">Check-in date / Innsjekksdato </label>
-                    <input type="date" id="check-in" name="check-in" value="<?php echo $_SESSION['check-in'] ;?>" required />
-                </div>
-                <div>
-                    <label for="check-out">Check-out date / Utsjekksdato </label>
-                    <input type="date" id="check-out" name="check-out" value="<?php echo $_SESSION['check-out'] ;?>" required />
-                </div>
-            </fieldset>
-
             <!-- Parkering felt -->
             <fieldset id="parking">
                 <legend> Parking / Parkering </legend>
@@ -152,11 +152,11 @@
                     <?php
                         if($_SESSION['parking'] == "Nei") {
                         echo "checked";
-                    }?> required/>
+                    }?> />
 
                     <!-- Hente parkeringplasser -->
                     <select name="parking-place" id="parking-place" >
-                        <option value=""> Choose parking place / Velg parkeringsplass </option>
+                        <option value=""> Choose parking number / Velg parkeringsid </option>
                         <?php
                               $park_sql = "SELECT * FROM parkering ";
                               $park_results = mysqli_query($db_con, $park_sql);
@@ -175,7 +175,7 @@
             </fieldset>
 
             <!-- Måltidsfelter -->
-            <fieldset id="meals">
+            <fieldset>
                 <legend> Meals / Måltider </legend>
                 <div>
 
@@ -186,27 +186,13 @@
 
                         while($meal = mysqli_fetch_array($meals_results)){
                             if($meal['navn']=="lunsj"){
-                                echo "<span> Lunch / Lunsj </span> <input type='checkbox' name='meals[]' value='". $meal['navn'] ."'>";
-
-                                if(isset($_SESSION['meals'])=="lunsj") {
-                                      echo "kr." . $meal['pris'];
-                                }
+                                echo "<span> Lunch / Lunsj </span> <input type='checkbox' name='lunch' value='". $meal['navn'] ."'>";
                                 echo str_repeat("&nbsp;", 8); // Mellomrom
                             }
-
+                            
                             elseif($meal['navn']=="middag"){
-                                echo "<span> Dinner / Middag </span> <input type='checkbox' name='meals[]' value='". $meal['navn'] ."'>";
-                                if(isset($_SESSION['meals']) == "middag") {
-                                        echo "kr. " . $meal['pris'];
-                                    }
+                                echo "<span> Dinner / Middag </span> <input type='checkbox' name='dinner' value='". $meal['navn'] ."'>";
                             }
-
-                            // if(isset($_POST['meals']) && in_array($_POST['lunsj'])){
-                            //    echo $meal['pris'];
-                            // }
-                            // if(isset($_POST['meals']) && in_array($_POST['middag'])){
-                            //     echo $meal['pris'];
-                            // }
                         }
 
                     ?>
@@ -227,11 +213,7 @@
     <script >
     $(document).ready(function() {
 
-                //Gjøre kravspesifikasjonvalget synlig hvis brukeren velger ja på valgfag
-
-                //Vi velger selectoren #valgfag-ja, som er id'en på radioknappen for å velge ja på spørsmålet om valgfag.
-                //Deretter knytter vi på funksjonen .on, som kan sjekke om selectoren er klikket ('click') eller endret ('change').
-                //Hvis elementet selectoren viser til er endret, kjører vi en funksjon:
+                // 
                 $("#roomtype").on('change', function() {
                       if($(this).val()==1){
                         $("#room_number_e").slideDown();
@@ -264,16 +246,20 @@
                   }
                 });
 
-                // // Deaktivere tidligere dato-er
-                // $("#check-in, #check-out").datepicker({
-                //   minDate:new Date(),
-                //   autoclose: true,
-                //   changeMonth: true,
-                //   changeYear: true,
-                //   changeDate: true,
+                // Deaktivere tidligere dato-er
+                $("#check-in, #check-out").datepicker({
+                  minDate: new Date()
+
                 //   onSelect: function(selectedDate) {
                 //     this.id == "#check-in, #check-out" ? "minDate" : "minDate"
-                // });
+                });
+
+                $( "input[type='date']" ).each(function(){
+                  if ($(this).hasClass("hasDatepicker") == false){
+                      $(this).after( $( "<div />" ).datepicker({ altField: "#" + $(this).attr( "id" ), showOtherMonths: true }) );
+                      $(this).addClass("hasDatepicker");
+                  }
+                });
 
             });
     </script>
