@@ -1,28 +1,33 @@
 <?php 
     if(isset($_POST)) { 
         //Gjør klar en array til vaskede data 
-        $washed = array(); 
+        $vasket = array(); 
 
         //Hente databasetilkobling 
         require("db.php"); 
 
         //Vaske postdata 
         foreach($_POST as $key => $value) { 
-            $washed[$key] = mysqli_real_escape_string($db_con, $value); 
-        } 
+            $vasket[$key] = mysqli_real_escape_string($db_con, $value); 
 
+        } 
+   
         //Lage en SQL som oppdaterer denne spesifikke oppføringen: 
-        $update_sql = "UPDATE kunde SET  
-        navn = '".$washed['navn']."',  
-        epost = '".$washed['epost']."',  
-        telefon = '".$washed['telefon']."', 
-        valgfag = '".$washed['valgfag']."', 
-        kravspek = '".$washed['kravspek']."', 
-        besk = '".$washed['besk']."', 
-        gruppe = '".$washed['gruppe']."', 
-        gruppemedlemmer = '".$washed['gruppemedlemmer']."', 
-        dag = '".$washed['dag']."', 
-        tid = '".$washed['tid']."' WHERE epost = '".$washed['epost']."' 
+        $update_sql = "UPDATE booking SET  
+        navn = '".$vasket['full_name']."',  
+        epost = '".$vasket['email']."',  
+        telefon = '".$vasket['phone']."', 
+        rom_type_id = '".$vasket['roomtype']."', 
+        innsjekk_dato = '".$vasket['checkin']."', 
+        utsjekk_dato = '".$vasket['checkout']."', 
+        antall_rom = '".$vasket['quantity']."', 
+        rom_id = '".$vasket['room_number']."', 
+        antall_personer = '".$vasket['people']."', 
+        lunsj = '".$vasket['lunch']."',
+        middag = '".$vasket['dinner']."',
+        parkering = '".$vasket['parking']."',
+        parkering_id = '".$vasket['parkering-place']."'
+         WHERE epost = '".$vasket['email']."' 
         "; 
 
         //Kjør oppdateringsspørringen mot databasen. 
@@ -34,7 +39,8 @@
             header("Location: admin.php?msg=error"); 
         } 
 
-    } else { 
+    } 
+    else { 
         header("Location: admin.php"); 
     } 
 ?>
