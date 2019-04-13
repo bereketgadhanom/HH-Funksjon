@@ -14,6 +14,6 @@
     </head>
     <body>
         <header>
-           <h1> . </h1>
+           <img id="logo" src="../bilder/halden_havnehotell_logo.png" alt="logo" />
            <nav>  <a class="currentlink" href="login.php"> Login </a>  </nav>
         </header>

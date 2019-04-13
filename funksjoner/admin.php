@@ -26,7 +26,7 @@
     </head>
     <body id="admin-body">
         <header>
-            <h1> . </h1>
+            <img id="logo" src="../bilder/halden_havnehotell_logo.png" alt="logo" />
             <nav>  
                 <a href="register.php"> Register </a> 
                 <a href="logout.php" name="logout"> Logout </a>
