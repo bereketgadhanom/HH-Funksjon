@@ -18,6 +18,6 @@
            <h1> . </h1>
            <nav>  
                <a class="currentlink" href="register.php"> Register </a> 
-               <a class="currentlink" href="login.php" name="logout"> Logout </a>
+               <a class="currentlink" href="logout.php" name="logout"> Logout </a>
          </nav>
         </header>

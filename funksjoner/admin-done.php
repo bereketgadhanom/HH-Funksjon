@@ -1,6 +1,7 @@
 <?php 
     if(isset($_POST)) { 
-        //Gjør klar en array til vaskede data 
+        
+        //Dfiner en tomt array
         $vasket = array(); 
 
         //Hente databasetilkobling 
@@ -12,21 +13,22 @@
 
         } 
    
-        //Lage en SQL som oppdaterer denne spesifikke oppføringen: 
+        //Oppdateringsspørring
         $update_sql = "UPDATE booking SET  
-        navn = '".$vasket['full_name']."',  
-        epost = '".$vasket['email']."',  
+        navn = '".$vasket['full_name']."',   
         telefon = '".$vasket['phone']."', 
         rom_type_id = '".$vasket['roomtype']."', 
         innsjekk_dato = '".$vasket['checkin']."', 
         utsjekk_dato = '".$vasket['checkout']."', 
+        netter = '".$vasket['nights']."',
         antall_rom = '".$vasket['quantity']."', 
         rom_id = '".$vasket['room_number']."', 
         antall_personer = '".$vasket['people']."', 
         lunsj = '".$vasket['lunch']."',
         middag = '".$vasket['dinner']."',
         parkering = '".$vasket['parking']."',
-        parkering_id = '".$vasket['parkering-place']."'
+        parkering_navn = '".$vasket['parking-place']."',
+        total_pris = '".$vasket['price']."'
          WHERE epost = '".$vasket['email']."' 
         "; 
 

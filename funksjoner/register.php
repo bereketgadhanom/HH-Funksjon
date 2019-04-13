@@ -1,10 +1,14 @@
-
 <?php 
     session_start();
+    // sjekk om brukeren er logget seg inn, hvis ikke sende til login side
+    if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+        session_destroy();
+        header("location: login.php");
+        exit;
+    }
     require('register-done.php'); 
-    require('header-body.php');
+    require('admin-header.php');
 ?>
-
     <main>
         <h1> Registerskjema </h1>
         <form action="" method="post">
@@ -28,7 +32,9 @@
                     <input type="password" name="confirm-password"  id="confirm-password" value="<?php echo $_SESSION['confirm-password']; ?>" required />
                 </div>
             </fieldset>
-            <button type="submit" name="register" id="register"> Register </button>
+            <div>
+                <button type="submit" name="register" id="register"> Register </button>
+            </div>
         </form>
     </main>
 

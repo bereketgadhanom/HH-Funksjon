@@ -10,13 +10,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="../css/hh-stil.css">
-
-
-        <?php include('metadata.php'); ?> <br>
+        <?php include('metadata.php'); ?>
     </head>
     <body>
         <header>
            <h1> . </h1>
            <nav>  <a class="currentlink" href="login.php"> Login </a>  </nav>
         </header>
-        

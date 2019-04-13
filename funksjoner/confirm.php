@@ -7,13 +7,13 @@
           }
         ?>
 
-        <h1> Information for sending / Imformasjon for sending </h1>
-             <h2> Hei  <?php echo $_SESSION['name']; ?> </h2>
+        <h2> Information for sending / Imformasjon for sending </h2>
+             <h3 style="color:dodgerblue"> Hello / Hei <span style='font-size:30px;'> &#128514; </span>  <?php echo $_SESSION['full_name']; ?> </h3>
              <table>
                 <tbody>
                   <tr>
                     <th> Name / Navn </th>
-                    <td> <?php echo $_SESSION['name']; ?>  </td>
+                    <td> <?php echo $_SESSION['full_name']; ?>  </td>
                   </tr>
                   <tr>
                     <th> Email / Epost </th>
@@ -30,11 +30,15 @@
                 <tbody>
                   <tr>
                     <th> Check in / Innsjekk </th>
-                    <td> <?php echo $_SESSION['check-in']; ?> </td>
+                    <td> <?php echo $_SESSION['checkin']; ?> </td>
                   </tr>
                   <tr>
                     <th> Check out / Utsjekk </th>
-                    <td> <?php echo $_SESSION['check-out']; ?> </td>
+                    <td> <?php echo $_SESSION['checkout']; ?> </td>
+                  </tr>
+                  <tr>
+                    <th> Number of nights / Antall netter </th>
+                    <td> <?php echo $_SESSION['nights']; ?> </td>
                   </tr>
                 </tbody>
              </table>
@@ -51,11 +55,11 @@
                   </tr>
                   <tr>
                     <th> Number of rooms / Antall rom </th>
-                    <td> <?php echo $_SESSION['check-out']; ?> </td>
+                    <td> <?php echo $_SESSION['quantity']; ?> </td>
                   </tr>
                   <tr>
                     <th> Number of people / Antall personer </th>
-                    <td> <?php echo $_SESSION['check-out']; ?> </td>
+                    <td> <?php echo $_SESSION['people']; ?> </td>
                   </tr>
                 </tbody>
              </table>
@@ -67,7 +71,7 @@
                     <td> <?php echo $_SESSION['parking']; ?>  </td>
                   </tr>
                   <tr>
-                    <th> Parking ID / ParkeringsID</th>
+                    <th> Parking ID / Parkering-ID</th>
                     <td> <?php echo $_SESSION['parking-place']; ?> </td>
                   </tr>
                 </tbody>
@@ -86,8 +90,16 @@
                 </tbody>
              </table>
 
+             <table>
+                <tbody>
+                  <tr>
+                    <th> Total price / Totalpris </th>
+                      <td> <?php echo $_SESSION['price']; ?> </td>
+                  </tr>
+                </tbody>
+             </table>
+
         <a href="index.php"> Edit / Rediger </a>
         <a href="done.php" name="confirm"> Confirm / Bekreft </a>
-
     </main>
 <?php require('footer-body.php'); ?>
