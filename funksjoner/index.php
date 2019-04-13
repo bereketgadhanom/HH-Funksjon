@@ -206,6 +206,7 @@
                 <div>
                     <label for="price"><strong style="color:dodgerblue"> Total price / Total pris : </strong></label>
                     <input id="total-price" type="text" name="price" value="<?php echo $_SESSION['price'] ;?>" style="color:dodgerblue" placeholder="Total price / Total pris"/>
+                    <p style="color:sandybrown"> The price does not include lunch and dinner / Prisen inkluderer ikke lunsj og middag </p>
                 </div>
             </fieldset>
             <div class="send">

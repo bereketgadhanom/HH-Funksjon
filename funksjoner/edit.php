@@ -7,10 +7,8 @@
         header("location: login.php");
         exit;
     }
-    
-require('admin-header.php'); //inkluderer header
 ?>
-
+<?php require('admin-header.php'); ?>
     <main>
         <?php 
             
