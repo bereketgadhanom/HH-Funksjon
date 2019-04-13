@@ -5,9 +5,10 @@
         session_destroy();
         header("location: login.php");
         exit;
-    }
+}?>
+
+<?php require('admin-header.php'); 
     require('register-done.php'); 
-    require('admin-header.php');
 ?>
     <main>
         <h1> Registerskjema </h1>

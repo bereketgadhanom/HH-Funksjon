@@ -1,8 +1,17 @@
+<?php 
+    session_start();
+    // sjekk om brukeren er logget seg inn, hvis ikke sende til login side
+    if(!isset($_SESSION["login"]) || $_SESSION["login"] !== true){
+        session_destroy();
+        header("location: login.php");
+        exit;
+}?>
+
 <?php session_start(); ?>
-<?php require('admin-header.php'); ?>
+<?php require('admin-header.php');?>
     <main>
         <?php
-            // initialisere variabel
+            // definere variabel
                 $errors = array(); 
                 require('db.php'); // Koble til databasen
                 
