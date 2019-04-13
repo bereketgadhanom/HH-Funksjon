@@ -10,10 +10,12 @@ html {
 
 #admin-body {
   width: 100%;
-  border-radius: 0; }
+  border-radius: 0;
+  margin: 0 auto; }
   #admin-body header, #admin-body #admin-footer {
     width: 100%;
-    border-radius: 0; }
+    border-radius: 0;
+    bottom: 0; }
   #admin-body #admin-main {
     margin: 0 auto;
     width: 100%;
@@ -44,7 +46,8 @@ body {
   font-size: 1.2em;
   line-height: 1.5;
   width: 80%;
-  grid-template-columns: repeat(auto 1fr);
+  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(auto, 1fr);
   grid-template-areas: "header" "main" "footer";
   grid-row-gap: 1em;
   text-align: center; }
@@ -173,17 +176,12 @@ footer {
   footer p, footer a {
     margin-top: 40px;
     color: white; }
-  footer a:after {
-    content: '';
-    background: url("../bilder/halden_havnehotell_ikon.png");
-    background-size: cover;
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    margin: 10px; }
 
 #logo {
   max-width: 60%; }
+
+#icon {
+  width: 35px; }
 
 @media screen and (max-width: 736px) {
   body {
