@@ -69,7 +69,7 @@
                     <select class="room_option" name="room_number"  id="room_number_e" >
                         <option value=""> Choose a single room / Velg enkeltrom </option>
                         <?php
-                          $room1_sql = "SELECT * FROM rom WHERE rom_type_id=1 ";
+                          $room1_sql = "SELECT * FROM rom WHERE rom_type_id=1 AND id NOT IN (SELECT rom_id FROM booking)";
                           $room1_results = mysqli_query($db_con, $room1_sql);
                             while($room_e = mysqli_fetch_array($room1_results)){
                                 if($room_e['id'] == $_SESSION['room_number'] ){
@@ -81,10 +81,10 @@
                             }
                         ?>
                     </select>
-                    <select class="room_option" name="room_number" id="room_number_d" >
+                    <select class="room_option" name="room_number" id="room_number_d ">
                         <option value="">Choose double room / Velg dobbeltrom </option>
                         <?php
-                          $room2_sql = "SELECT * FROM rom WHERE rom_type_id=2 ";
+                          $room2_sql = "SELECT * FROM rom WHERE rom_type_id=2 AND id NOT IN (SELECT rom_id FROM booking)";
                           $room2_results = mysqli_query($db_con, $room2_sql);
                             while($room_d = mysqli_fetch_array($room2_results)){
                                 if($room_d['id']==$_SESSION['room_number']){
@@ -99,7 +99,7 @@
                     <select class="room_option" name="room_number" id="room_number_s" >
                         <option value=""> Choose  suite room / Velg suite rom </option>
                         <?php
-                            $room3_sql = "SELECT * FROM rom WHERE rom_type_id =3 ";
+                            $room3_sql = "SELECT * FROM rom WHERE rom_type_id =3 AND id NOT IN (SELECT rom_id FROM booking)";
                             $room3_results = mysqli_query($db_con, $room3_sql);
                             while($room_s = mysqli_fetch_array($room3_results)){
                                 if($room_s['id']==$_SESSION['room_number']){
@@ -114,7 +114,7 @@
                     <select  class="room_option" name="room_number" id="room_number_b" >
                         <option value=""> Choose Honeymoon suite room  / Velg bryllubssuite rom </option>
                         <?php
-                            $room4_sql = "SELECT * FROM rom WHERE rom_type_id =4 ";
+                            $room4_sql = "SELECT * FROM rom WHERE rom_type_id =4 AND id NOT IN (SELECT rom_id FROM booking)";
                             $room4_results = mysqli_query($db_con, $room4_sql);
                             while($room_b = mysqli_fetch_array($room4_results)){
                                 if($room_b['id']==$_SESSION['room_number']){
@@ -159,9 +159,8 @@
 
                     <!-- Hente parkeringplasser -->
                     <select name="parking-place" id="parking-place" >
-                        <option value=""> Choose parking-name / Velg parkeringsnavn</option>
                         <?php
-                              $park_sql = "SELECT * FROM parkering ";
+                              $park_sql = "SELECT * FROM parkering WHERE p_navn NOT IN(SELECT parkering_navn FROM booking WHERE parkering_navn !='--') ORDER BY id ASC ";
                               $park_results = mysqli_query($db_con, $park_sql);
                               while($park = mysqli_fetch_array($park_results)){
                                 if($park['navn']==$_SESSION['parking-place']){
@@ -196,7 +195,6 @@
                                 echo "<span> ".$meal['pris']. " kr </span>";
                             }
                         }
-
                     ?>
                 </div>
             </fieldset>
@@ -206,7 +204,7 @@
                 <div>
                     <label for="price"><strong style="color:dodgerblue"> Total price / Total pris : </strong></label>
                     <input id="total-price" type="text" name="price" value="<?php echo $_SESSION['price'] ;?>" style="color:dodgerblue" placeholder="Total price / Total pris"/>
-                    <p style="color:sandybrown"> The price does not include lunch and dinner / Prisen inkluderer ikke lunsj og middag </p>
+                    <p style="color:sandybrown"> The price didn't include lunch and dinner / Prisen inkluderer ikke lunsj og middag </p>
                 </div>
             </fieldset>
             <div class="send">
